@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.custumerName = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textName = new System.Windows.Forms.TextBox();
+            this.textWidth = new System.Windows.Forms.TextBox();
             this.width = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textDepth = new System.Windows.Forms.TextBox();
             this.depth = new System.Windows.Forms.Label();
             this.material = new System.Windows.Forms.Label();
             this.drawers = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboDrawers = new System.Windows.Forms.ComboBox();
+            this.comboMaterial = new System.Windows.Forms.ComboBox();
             this.date = new System.Windows.Forms.Label();
             this.rushBox = new System.Windows.Forms.CheckBox();
             this.radio3 = new System.Windows.Forms.RadioButton();
@@ -47,21 +46,12 @@
             this.radio7 = new System.Windows.Forms.RadioButton();
             this.finalPrice = new System.Windows.Forms.TextBox();
             this.labelFinal = new System.Windows.Forms.Label();
+            this.btnGoBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(280, 352);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 50);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
+            this.btnSave.Enabled = false;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(411, 352);
             this.btnSave.Name = "btnSave";
@@ -69,6 +59,7 @@
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // custumerName
             // 
@@ -80,21 +71,24 @@
             this.custumerName.TabIndex = 2;
             this.custumerName.Text = "Customer Name:";
             // 
-            // textBox1
+            // textName
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(191, 70);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(325, 27);
-            this.textBox1.TabIndex = 3;
+            this.textName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textName.Location = new System.Drawing.Point(191, 70);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(325, 27);
+            this.textName.TabIndex = 3;
+            this.textName.TextChanged += new System.EventHandler(this.textName_TextChanged);
             // 
-            // textBox2
+            // textWidth
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(191, 112);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(110, 27);
-            this.textBox2.TabIndex = 5;
+            this.textWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textWidth.Location = new System.Drawing.Point(191, 112);
+            this.textWidth.Name = "textWidth";
+            this.textWidth.Size = new System.Drawing.Size(110, 27);
+            this.textWidth.TabIndex = 5;
+            this.textWidth.TextChanged += new System.EventHandler(this.textWidth_TextChanged);
+            this.textWidth.Validating += new System.ComponentModel.CancelEventHandler(this.textWidth_Validating);
             // 
             // width
             // 
@@ -106,14 +100,17 @@
             this.width.TabIndex = 4;
             this.width.Text = "Desk Width:";
             // 
-            // textBox3
+            // textDepth
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(406, 112);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(110, 27);
-            this.textBox3.TabIndex = 7;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textDepth.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textDepth.Location = new System.Drawing.Point(406, 112);
+            this.textDepth.Name = "textDepth";
+            this.textDepth.Size = new System.Drawing.Size(110, 27);
+            this.textDepth.TabIndex = 7;
+            this.textDepth.TextChanged += new System.EventHandler(this.textDepth_TextChanged);
+            this.textDepth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDepth_KeyPress);
+            this.textDepth.Validating += new System.ComponentModel.CancelEventHandler(this.textDepth_Validating);
+            this.textDepth.Validated += new System.EventHandler(this.textDepth_Validated);
             // 
             // depth
             // 
@@ -147,23 +144,23 @@
             this.drawers.Text = "Drawers:";
             this.drawers.Click += new System.EventHandler(this.label3_Click);
             // 
-            // comboBox1
+            // comboDrawers
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(191, 154);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(110, 28);
-            this.comboBox1.TabIndex = 13;
+            this.comboDrawers.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboDrawers.FormattingEnabled = true;
+            this.comboDrawers.Location = new System.Drawing.Point(191, 154);
+            this.comboDrawers.Name = "comboDrawers";
+            this.comboDrawers.Size = new System.Drawing.Size(110, 28);
+            this.comboDrawers.TabIndex = 13;
             // 
-            // comboBox2
+            // comboMaterial
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(406, 155);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(110, 28);
-            this.comboBox2.TabIndex = 14;
+            this.comboMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboMaterial.FormattingEnabled = true;
+            this.comboMaterial.Location = new System.Drawing.Point(406, 155);
+            this.comboMaterial.Name = "comboMaterial";
+            this.comboMaterial.Size = new System.Drawing.Size(110, 28);
+            this.comboMaterial.TabIndex = 14;
             // 
             // date
             // 
@@ -244,11 +241,23 @@
             this.labelFinal.Text = "FInal Price:";
             this.labelFinal.Click += new System.EventHandler(this.label5_Click);
             // 
+            // btnGoBack
+            // 
+            this.btnGoBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGoBack.Location = new System.Drawing.Point(278, 352);
+            this.btnGoBack.Name = "btnGoBack";
+            this.btnGoBack.Size = new System.Drawing.Size(110, 50);
+            this.btnGoBack.TabIndex = 23;
+            this.btnGoBack.Text = "Back";
+            this.btnGoBack.UseVisualStyleBackColor = true;
+            this.btnGoBack.Click += new System.EventHandler(this.btnGoBack_Click);
+            // 
             // AddQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 439);
+            this.Controls.Add(this.btnGoBack);
             this.Controls.Add(this.finalPrice);
             this.Controls.Add(this.labelFinal);
             this.Controls.Add(this.radio7);
@@ -256,18 +265,17 @@
             this.Controls.Add(this.radio3);
             this.Controls.Add(this.rushBox);
             this.Controls.Add(this.date);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboMaterial);
+            this.Controls.Add(this.comboDrawers);
             this.Controls.Add(this.material);
             this.Controls.Add(this.drawers);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textDepth);
             this.Controls.Add(this.depth);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textWidth);
             this.Controls.Add(this.width);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textName);
             this.Controls.Add(this.custumerName);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
             this.Name = "AddQuote";
             this.Text = "AddQuote";
             this.ResumeLayout(false);
@@ -276,19 +284,17 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label custumerName;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textName;
+        private System.Windows.Forms.TextBox textWidth;
         private System.Windows.Forms.Label width;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textDepth;
         private System.Windows.Forms.Label depth;
         private System.Windows.Forms.Label material;
         private System.Windows.Forms.Label drawers;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboDrawers;
+        private System.Windows.Forms.ComboBox comboMaterial;
         private System.Windows.Forms.Label date;
         private System.Windows.Forms.CheckBox rushBox;
         private System.Windows.Forms.RadioButton radio3;
@@ -296,5 +302,6 @@
         private System.Windows.Forms.RadioButton radio7;
         private System.Windows.Forms.TextBox finalPrice;
         private System.Windows.Forms.Label labelFinal;
+        private System.Windows.Forms.Button btnGoBack;
     }
 }

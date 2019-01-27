@@ -15,14 +15,91 @@ namespace MegaDesk_3_SidneyRodrigues
         public AddQuote()
         {
             InitializeComponent();
+      
+
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        public void checkFields()
+        {
+            if ( this.textDepth.Text != "" && this.textWidth.Text != "")
+            {
+                this.btnSave.Enabled = true;
+            }
+        }
+
+    
+
+        private void textWidth_Validating(object sender, CancelEventArgs e)
+        {
+            if (int.TryParse(textWidth.Text, out int WidthInput) == true)
+            {
+                if (WidthInput < Desk.MINWIDTH || WidthInput > Desk.MAXWIDTH)
+                {
+                    MessageBox.Show("Please enter a min width of 24 or max of 96 inches" );
+                    textWidth.Text = String.Empty;
+                    textWidth.BackColor = Color.Red;
+                    textWidth.Focus();
+                }
+                else
+                {
+                    textWidth.BackColor = System.Drawing.SystemColors.Window;
+                }
+            }
+            else if (int.TryParse(textWidth.Text, out WidthInput) == false && textWidth.Text.Length != 0)
+            {
+                MessageBox.Show("Please enter a number");
+                textWidth.Text = String.Empty;
+                textWidth.BackColor = Color.Red;
+                textWidth.Focus();
+            }
+            else
+            {
+                textWidth.BackColor = System.Drawing.SystemColors.Window;
+            }
+        }
+
+
+
+        private void textDepth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsControl(e.KeyChar) == false && Char.IsDigit(e.KeyChar) == false)
+            {
+                MessageBox.Show("Please enter a number");
+                e.Handled = true;
+                textDepth.BackColor = Color.Red;
+                textDepth.Focus();
+            }
+            else
+            {
+                textDepth.BackColor = System.Drawing.SystemColors.Window;
+            }
+        }
+
+        private void textDepth_Validating(object sender, CancelEventArgs e)
+        {
+            if (int.TryParse(textDepth.Text, out int DepthInput) == true)
+            {
+                if (DepthInput < Desk.MINDEPTH || DepthInput > Desk.MAXDEPTH)
+                {
+                    MessageBox.Show("Please enter a min depth of 12 or a max of 48 inches");
+                    textDepth.Text = String.Empty;
+                    textDepth.BackColor = Color.Red;
+                    textDepth.Focus();
+                }
+            }
+            else
+            {
+                textDepth.BackColor = System.Drawing.SystemColors.Window;
+            }
+
+        }
+
+        private void textDepth_Validated(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
@@ -54,9 +131,35 @@ namespace MegaDesk_3_SidneyRodrigues
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+ 
+           
+        }
+
+        private void textName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGoBack_Click(object sender, EventArgs e)
+        {
             var mainMenu = (MainMenu)Tag;
             mainMenu.Show();
             Close();
+        }
+
+        private void textWidth_TextChanged(object sender, EventArgs e)
+        {
+            checkFields();
+        }
+
+        private void textDepth_TextChanged(object sender, EventArgs e)
+        {
+            checkFields();
         }
     }
 }
